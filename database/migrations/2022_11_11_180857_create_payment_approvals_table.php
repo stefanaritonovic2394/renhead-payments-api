@@ -14,14 +14,22 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payment_approvals', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('payment_id');
+            $table->integer('id', true)->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('payment_id')->unsigned();
             $table->string('payment_type');
             $table->enum('status', config('renhead.payment.approval.status'));
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
             $table->dateTime('deleted_at');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+
+            $table->foreign('payment_id')
+                ->references('id')
+                ->on('payments');
         });
     }
 
