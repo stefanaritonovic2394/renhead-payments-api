@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('first_name');
             $table->string('last_name');
-            $table->enum('type', config('renhead.user.type'));
+            $table->enum('type', config('renhead.user.type'))->default('NOTAPPROVER');
             $table->string('password');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');

@@ -10,7 +10,8 @@ return [
 
     'user' => [
         'type' => [
-            'APPROVER'
+            'APPROVER',
+            'NOTAPPROVER'
         ]
     ],
     'payment' => [
