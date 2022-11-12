@@ -17,9 +17,9 @@ return new class extends Migration
             $table->integer('id', true)->unsigned();
             $table->integer('user_id')->unsigned();
             $table->double('amount');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
-            $table->dateTime('deleted_at');
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
 
             $table->foreign('user_id')
                 ->references('id')

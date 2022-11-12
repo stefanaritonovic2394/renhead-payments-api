@@ -19,9 +19,9 @@ return new class extends Migration
             $table->integer('payment_id')->unsigned();
             $table->string('payment_type');
             $table->enum('status', config('renhead.payment.approval.status'));
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
-            $table->dateTime('deleted_at');
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
 
             $table->foreign('user_id')
                 ->references('id')
