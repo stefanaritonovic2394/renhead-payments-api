@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentApprovalController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TravelPaymentController;
 use Illuminate\Http\Request;
@@ -22,3 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/payment', PaymentController::class);
 Route::apiResource('/travel-payment', TravelPaymentController::class);
+
+Route::post('/payment-approval', [PaymentApprovalController::class, 'storePaymentApproval']);
+Route::post('/payment/{paymentId}/approve', [PaymentApprovalController::class, 'approvePayment']);
