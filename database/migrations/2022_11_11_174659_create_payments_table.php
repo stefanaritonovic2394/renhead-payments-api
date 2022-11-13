@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->integer('id', true)->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->double('total_amount');
+            $table->double('total_amount', '5', '2');
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
             $table->dateTime('deleted_at')->nullable();
