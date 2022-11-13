@@ -22,15 +22,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Public routes
+/**
+ * Public routes
+ */
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-// Protected routes
+/**
+ * Protected routes
+ */
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/payment', PaymentController::class);
     Route::apiResource('/travel-payment', TravelPaymentController::class);
     Route::post('/payment-approval', [PaymentApprovalController::class, 'storePaymentApproval']);
     Route::post('/payment/{paymentId}/approve', [PaymentApprovalController::class, 'approvePayment']);
+    Route::get('/approved-payments', [PaymentApprovalController::class, 'getApprovedPayments']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
