@@ -17,7 +17,7 @@ class TravelPaymentResource extends JsonResource
         return [
             'id' => $this->id,
             'amount' => $this->amount,
-            'user' => new UserResource($this->user),
+            'user' => new UserResource($this->whenLoaded('user')),
         ];
     }
 }

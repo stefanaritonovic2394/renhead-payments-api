@@ -25,7 +25,7 @@ class StorePaymentRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'total_amount' => 'required|numeric|min:3',
+            'total_amount' => 'required|numeric|min:5|between:0.00,999.99',
         ];
     }
 }

@@ -25,7 +25,7 @@ class StoreTravelPaymentRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'amount' => 'required|numeric|min:3',
+            'amount' => 'required|numeric|min:5|between:0.00,999.99',
         ];
     }
 }
