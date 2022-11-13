@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('last_name');
             $table->enum('type', config('renhead.user.type'))->default('NOTAPPROVER');
             $table->string('password');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
-            $table->dateTime('deleted_at');
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentApprovalController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TravelPaymentController;
@@ -21,8 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/payment', PaymentController::class);
-Route::apiResource('/travel-payment', TravelPaymentController::class);
+//Public routes
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::post('/payment-approval', [PaymentApprovalController::class, 'storePaymentApproval']);
-Route::post('/payment/{paymentId}/approve', [PaymentApprovalController::class, 'approvePayment']);
+// Protected routes
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('/payment', PaymentController::class);
+    Route::apiResource('/travel-payment', TravelPaymentController::class);
+    Route::post('/payment-approval', [PaymentApprovalController::class, 'storePaymentApproval']);
+    Route::post('/payment/{paymentId}/approve', [PaymentApprovalController::class, 'approvePayment']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
